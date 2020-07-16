@@ -1,0 +1,34 @@
+
+rem NOTE: this batch file is to be run in a Visual Studio command prompt
+
+rem Delete old files
+del *.obj
+del *.ilk
+del *.exe
+del *.pdb
+
+rem Compile files into .obj files in current directory
+cl /I"..\..\..\testcasesupport" /W3 /MT /GS /O2 /bigobj /EHsc /DOMITBAD /nologo /c main.cpp CWE*.cpp ..\..\..\testcasesupport\io.c ..\..\..\testcasesupport\std_thread.c
+
+/I     在目录中搜索包含文件 
+/W0、/W1、/W2、/W3、/W4	设置输出警告级别。
+/MT    使用LIBCMT.lib创建多线程可执行文件 
+/GS	检查缓冲区安全性。
+/O2	创建快速代码。
+/bigobj	增加 .obj 文件中可寻址节的数目。
+/nologo	取消显示登录版权标志。
+/c     若要编译但不链接，请使用  
+
+
+
+rem Link all .obj file into a exe
+cl /FeCWE23_s03 *.obj /I"..\..\..\testcasesupport" /W3 /MT /GS /O2 /bigobj /EHsc /DOMITBAD /nologo
+
+/Fe	重命名可执行文件。
+/I  在目录中搜索包含文件
+/W0、/W1、/W2、/W3、/W4	设置输出警告级别。
+/MT    使用LIBCMT.lib创建多线程可执行文件 
+/GS	检查缓冲区安全性。
+/O2	创建快速代码。 
+/bigobj	增加 .obj 文件中可寻址节的数目。
+/nologo	取消显示登录版权标志。
